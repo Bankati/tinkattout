@@ -1,0 +1,309 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="800" viewBox="0 0 800 800">
+  <defs>
+    <!-- Papier quadrillé subtil -->
+    <pattern id="grid" width="24" height="24" patternUnits="userSpaceOnUse">
+      <path d="M 24 0 L 0 0 0 24" fill="none" stroke="#c6e8f7" stroke-width="0.6"/>
+    </pattern>
+  </defs>
+
+  <!-- Fond blanc cassé + grille -->
+  <rect width="800" height="800" fill="#f4faff"/>
+  <rect width="800" height="800" fill="url(#grid)"/>
+
+  <!-- Tous les éléments en bleu contour, stroke only -->
+  <g fill="none" stroke="#3FAEE8" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+
+    <!-- ══ CRAYONS ══ -->
+    <!-- Crayon 1 — haut gauche, penché -->
+    <g transform="translate(78,110) rotate(-50)">
+      <rect x="-6" y="-32" width="12" height="58" rx="1.5"/>
+      <polygon points="-6,26 6,26 0,42" stroke-width="2"/>
+      <rect x="-6" y="-42" width="12" height="12" rx="1"/>
+      <line x1="-6" y1="-30" x2="6" y2="-30"/>
+      <line x1="-6" y1="26" x2="6" y2="26"/>
+    </g>
+
+    <!-- Crayon 2 — haut milieu, droit -->
+    <g transform="translate(315,55) rotate(20)">
+      <rect x="-6" y="-32" width="12" height="58" rx="1.5"/>
+      <polygon points="-6,26 6,26 0,42"/>
+      <rect x="-6" y="-42" width="12" height="12" rx="1"/>
+      <line x1="-6" y1="-30" x2="6" y2="-30"/>
+      <line x1="-6" y1="26" x2="6" y2="26"/>
+    </g>
+
+    <!-- Crayon 3 — milieu gauche -->
+    <g transform="translate(155,340) rotate(-30)">
+      <rect x="-6" y="-32" width="12" height="58" rx="1.5"/>
+      <polygon points="-6,26 6,26 0,42"/>
+      <rect x="-6" y="-42" width="12" height="12" rx="1"/>
+      <line x1="-6" y1="-30" x2="6" y2="-30"/>
+      <line x1="-6" y1="26" x2="6" y2="26"/>
+    </g>
+
+    <!-- Crayon 4 — bas milieu -->
+    <g transform="translate(390,640) rotate(40)">
+      <rect x="-6" y="-32" width="12" height="58" rx="1.5"/>
+      <polygon points="-6,26 6,26 0,42"/>
+      <rect x="-6" y="-42" width="12" height="12" rx="1"/>
+      <line x1="-6" y1="-30" x2="6" y2="-30"/>
+      <line x1="-6" y1="26" x2="6" y2="26"/>
+    </g>
+
+    <!-- Crayon 5 — bas droit -->
+    <g transform="translate(670,700) rotate(-20)">
+      <rect x="-6" y="-32" width="12" height="58" rx="1.5"/>
+      <polygon points="-6,26 6,26 0,42"/>
+      <rect x="-6" y="-42" width="12" height="12" rx="1"/>
+      <line x1="-6" y1="-30" x2="6" y2="-30"/>
+      <line x1="-6" y1="26" x2="6" y2="26"/>
+    </g>
+
+    <!-- ══ RÈGLES ══ -->
+    <!-- Règle 1 — haut gauche -->
+    <g transform="translate(28,42) rotate(-12)">
+      <rect x="0" y="0" width="100" height="20" rx="2"/>
+      <line x1="10" y1="0" x2="10" y2="9"/>
+      <line x1="20" y1="0" x2="20" y2="14"/>
+      <line x1="30" y1="0" x2="30" y2="9"/>
+      <line x1="40" y1="0" x2="40" y2="14"/>
+      <line x1="50" y1="0" x2="50" y2="9"/>
+      <line x1="60" y1="0" x2="60" y2="14"/>
+      <line x1="70" y1="0" x2="70" y2="9"/>
+      <line x1="80" y1="0" x2="80" y2="14"/>
+      <line x1="90" y1="0" x2="90" y2="9"/>
+    </g>
+
+    <!-- Règle 2 — centre -->
+    <g transform="translate(310,385) rotate(8)">
+      <rect x="0" y="0" width="110" height="20" rx="2"/>
+      <line x1="10" y1="0" x2="10" y2="9"/>
+      <line x1="20" y1="0" x2="20" y2="14"/>
+      <line x1="30" y1="0" x2="30" y2="9"/>
+      <line x1="40" y1="0" x2="40" y2="14"/>
+      <line x1="50" y1="0" x2="50" y2="9"/>
+      <line x1="60" y1="0" x2="60" y2="14"/>
+      <line x1="70" y1="0" x2="70" y2="9"/>
+      <line x1="80" y1="0" x2="80" y2="14"/>
+      <line x1="90" y1="0" x2="90" y2="9"/>
+      <line x1="100" y1="0" x2="100" y2="9"/>
+    </g>
+
+    <!-- Règle 3 — bas gauche -->
+    <g transform="translate(40,660) rotate(5)">
+      <rect x="0" y="0" width="100" height="20" rx="2"/>
+      <line x1="10" y1="0" x2="10" y2="9"/>
+      <line x1="20" y1="0" x2="20" y2="14"/>
+      <line x1="30" y1="0" x2="30" y2="9"/>
+      <line x1="40" y1="0" x2="40" y2="14"/>
+      <line x1="50" y1="0" x2="50" y2="9"/>
+      <line x1="60" y1="0" x2="60" y2="14"/>
+      <line x1="70" y1="0" x2="70" y2="9"/>
+      <line x1="80" y1="0" x2="80" y2="14"/>
+    </g>
+
+    <!-- Équerre triangle — haut droit -->
+    <g transform="translate(620,22) rotate(-8)">
+      <polygon points="0,55 0,0 55,55"/>
+      <line x1="8" y1="44" x2="14" y2="36" stroke-width="1.5"/>
+      <line x1="19" y1="33" x2="25" y2="25" stroke-width="1.5"/>
+      <line x1="30" y1="22" x2="36" y2="14" stroke-width="1.5"/>
+      <line x1="41" y1="11" x2="47" y2="3"  stroke-width="1.5"/>
+    </g>
+
+    <!-- Équerre triangle — bas droit -->
+    <g transform="translate(660,660) rotate(15)">
+      <polygon points="0,55 0,0 55,55"/>
+      <line x1="8" y1="44" x2="14" y2="36" stroke-width="1.5"/>
+      <line x1="19" y1="33" x2="25" y2="25" stroke-width="1.5"/>
+      <line x1="30" y1="22" x2="36" y2="14" stroke-width="1.5"/>
+    </g>
+
+    <!-- ══ CISEAUX ══ -->
+    <!-- Ciseaux 1 — haut centre-gauche -->
+    <g transform="translate(450,35) rotate(-15)">
+      <circle cx="-10" cy="-20" r="13"/>
+      <circle cx="10"  cy="-20" r="13"/>
+      <line x1="-3"  y1="-8" x2="-18" y2="38"/>
+      <line x1="3"   y1="-8" x2="18"  y2="38"/>
+      <circle cx="0" cy="-5" r="4" stroke-width="1.5"/>
+    </g>
+
+    <!-- Ciseaux 2 — milieu droit -->
+    <g transform="translate(710,330) rotate(20)">
+      <circle cx="-10" cy="-20" r="13"/>
+      <circle cx="10"  cy="-20" r="13"/>
+      <line x1="-3"  y1="-8" x2="-16" y2="35"/>
+      <line x1="3"   y1="-8" x2="16"  y2="35"/>
+      <circle cx="0" cy="-5" r="4" stroke-width="1.5"/>
+    </g>
+
+    <!-- Ciseaux 3 — bas centre -->
+    <g transform="translate(480,680) rotate(-10)">
+      <circle cx="-10" cy="-20" r="13"/>
+      <circle cx="10"  cy="-20" r="13"/>
+      <line x1="-3"  y1="-8" x2="-18" y2="38"/>
+      <line x1="3"   y1="-8" x2="18"  y2="38"/>
+      <circle cx="0" cy="-5" r="4" stroke-width="1.5"/>
+    </g>
+
+    <!-- ══ RÉVEIL / HORLOGE ══ -->
+    <!-- Horloge 1 — centre-gauche -->
+    <g transform="translate(390,200)">
+      <circle cx="0" cy="8" r="28"/>
+      <circle cx="-18" cy="-15" r="8" stroke-width="2"/>
+      <circle cx="18"  cy="-15" r="8" stroke-width="2"/>
+      <line x1="0" y1="8" x2="0" y2="-14" stroke-width="2.2"/>
+      <line x1="0" y1="8" x2="14" y2="16" stroke-width="2.2"/>
+      <circle cx="0" cy="8" r="3" fill="#3FAEE8" stroke="none"/>
+      <line x1="-9" y1="35" x2="-14" y2="42" stroke-width="2.2"/>
+      <line x1="9"  y1="35" x2="14"  y2="42" stroke-width="2.2"/>
+    </g>
+
+    <!-- Horloge 2 — bas gauche -->
+    <g transform="translate(115,590)">
+      <circle cx="0" cy="8" r="28"/>
+      <circle cx="-18" cy="-15" r="8" stroke-width="2"/>
+      <circle cx="18"  cy="-15" r="8" stroke-width="2"/>
+      <line x1="0" y1="8" x2="0" y2="-14" stroke-width="2.2"/>
+      <line x1="0" y1="8" x2="14" y2="16" stroke-width="2.2"/>
+      <circle cx="0" cy="8" r="3" fill="#3FAEE8" stroke="none"/>
+      <line x1="-9" y1="35" x2="-14" y2="42" stroke-width="2.2"/>
+      <line x1="9"  y1="35" x2="14"  y2="42" stroke-width="2.2"/>
+    </g>
+
+    <!-- ══ SAC À DOS ══ -->
+    <!-- Sac 1 — haut milieu-droite -->
+    <g transform="translate(555,130)">
+      <rect x="-22" y="-12" width="44" height="46" rx="9"/>
+      <path d="M -12 -12 C -12 -28 -12 -36 0 -36 C 12 -36 12 -28 12 -12" stroke-width="2"/>
+      <rect x="-14" y="10" width="28" height="18" rx="5"/>
+      <line x1="-4" y1="19" x2="4" y2="19" stroke-width="1.8"/>
+      <line x1="-18" y1="34" x2="-18" y2="28" stroke-width="2.2"/>
+      <line x1="18"  y1="34" x2="18"  y2="28" stroke-width="2.2"/>
+    </g>
+
+    <!-- Sac 2 — bas droite -->
+    <g transform="translate(745,660)">
+      <rect x="-22" y="-12" width="44" height="46" rx="9"/>
+      <path d="M -12 -12 C -12 -28 -12 -36 0 -36 C 12 -36 12 -28 12 -12" stroke-width="2"/>
+      <rect x="-14" y="10" width="28" height="18" rx="5"/>
+      <line x1="-4" y1="19" x2="4" y2="19" stroke-width="1.8"/>
+      <line x1="-18" y1="34" x2="-18" y2="28" stroke-width="2.2"/>
+      <line x1="18"  y1="34" x2="18"  y2="28" stroke-width="2.2"/>
+    </g>
+
+    <!-- ══ TROMBONES (PAPER CLIPS) ══ -->
+    <!-- Trombone 1 -->
+    <g transform="translate(240,155) rotate(20)">
+      <path d="M 7 -28 Q 7 -36 0 -36 Q -7 -36 -7 -28 L -7 24 Q -7 34 0 34 Q 10 34 10 22 L 10 -16 Q 10 -24 3 -24 L 3 22 Q 3 27 0 27 Q -3 27 -3 22 L -3 -28" stroke-width="2.2"/>
+    </g>
+
+    <!-- Trombone 2 -->
+    <g transform="translate(570,430) rotate(-15)">
+      <path d="M 7 -28 Q 7 -36 0 -36 Q -7 -36 -7 -28 L -7 24 Q -7 34 0 34 Q 10 34 10 22 L 10 -16 Q 10 -24 3 -24 L 3 22 Q 3 27 0 27 Q -3 27 -3 22 L -3 -28" stroke-width="2.2"/>
+    </g>
+
+    <!-- Trombone 3 -->
+    <g transform="translate(680,510) rotate(10)">
+      <path d="M 7 -28 Q 7 -36 0 -36 Q -7 -36 -7 -28 L -7 24 Q -7 34 0 34 Q 10 34 10 22 L 10 -16 Q 10 -24 3 -24 L 3 22 Q 3 27 0 27 Q -3 27 -3 22 L -3 -28" stroke-width="2.2"/>
+    </g>
+
+    <!-- ══ GOMMES ══ -->
+    <!-- Gomme 1 -->
+    <g transform="translate(460,115) rotate(18)">
+      <rect x="-22" y="-11" width="44" height="22" rx="3"/>
+      <line x1="-2"  y1="-11" x2="-2"  y2="11"/>
+    </g>
+
+    <!-- Gomme 2 -->
+    <g transform="translate(250,510) rotate(-20)">
+      <rect x="-22" y="-11" width="44" height="22" rx="3"/>
+      <line x1="-2"  y1="-11" x2="-2"  y2="11"/>
+    </g>
+
+    <!-- Gomme 3 -->
+    <g transform="translate(590,750) rotate(8)">
+      <rect x="-22" y="-11" width="44" height="22" rx="3"/>
+      <line x1="-2"  y1="-11" x2="-2"  y2="11"/>
+    </g>
+
+    <!-- ══ MARQUEURS / STYLOS ══ -->
+    <!-- Marqueur 1 — droite haut -->
+    <g transform="translate(720,80) rotate(25)">
+      <rect x="-6" y="-25" width="12" height="50" rx="2.5"/>
+      <rect x="-6" y="-40" width="12" height="17" rx="3.5"/>
+      <path d="M -4 25 L 0 36 L 4 25" stroke-width="2"/>
+      <line x1="6" y1="-38" x2="6" y2="-25" stroke-width="1.8"/>
+    </g>
+
+    <!-- Marqueur 2 — milieu bas -->
+    <g transform="translate(200,460) rotate(-45)">
+      <rect x="-6" y="-25" width="12" height="50" rx="2.5"/>
+      <rect x="-6" y="-40" width="12" height="17" rx="3.5"/>
+      <path d="M -4 25 L 0 36 L 4 25" stroke-width="2"/>
+      <line x1="6" y1="-38" x2="6" y2="-25" stroke-width="1.8"/>
+    </g>
+
+    <!-- ══ CAHIERS / FEUILLES ══ -->
+    <!-- Cahier 1 — milieu gauche -->
+    <g transform="translate(42,270) rotate(12)">
+      <rect x="-18" y="-26" width="36" height="52" rx="2"/>
+      <circle cx="-18" cy="-14" r="4" stroke-width="1.8"/>
+      <circle cx="-18" cy="0"   r="4" stroke-width="1.8"/>
+      <circle cx="-18" cy="14"  r="4" stroke-width="1.8"/>
+      <line x1="-8"  y1="-14" x2="14" y2="-14" stroke-width="1.5"/>
+      <line x1="-8"  y1="-4"  x2="14" y2="-4"  stroke-width="1.5"/>
+      <line x1="-8"  y1="6"   x2="14" y2="6"   stroke-width="1.5"/>
+      <line x1="-8"  y1="16"  x2="14" y2="16"  stroke-width="1.5"/>
+    </g>
+
+    <!-- Cahier 2 — bas milieu droite -->
+    <g transform="translate(580,580) rotate(-14)">
+      <rect x="-18" y="-26" width="36" height="52" rx="2"/>
+      <circle cx="-18" cy="-14" r="4" stroke-width="1.8"/>
+      <circle cx="-18" cy="0"   r="4" stroke-width="1.8"/>
+      <circle cx="-18" cy="14"  r="4" stroke-width="1.8"/>
+      <line x1="-8"  y1="-14" x2="14" y2="-14" stroke-width="1.5"/>
+      <line x1="-8"  y1="-4"  x2="14" y2="-4"  stroke-width="1.5"/>
+      <line x1="-8"  y1="6"   x2="14" y2="6"   stroke-width="1.5"/>
+    </g>
+
+    <!-- ══ ÉCLAIRS ZIGZAG ══ -->
+    <polyline points="200,295 190,315 202,319 192,340" stroke-width="2.5"/>
+    <polyline points="500,295 490,315 502,319 492,340" stroke-width="2.5"/>
+    <polyline points="625,450 615,470 627,474 617,495" stroke-width="2.5"/>
+    <polyline points="360,490 350,510 362,514 352,535" stroke-width="2.5"/>
+    <polyline points="70,460 60,480 72,484 62,505" stroke-width="2.5"/>
+    <polyline points="730,200 720,220 732,224 722,245" stroke-width="2.5"/>
+    <polyline points="440,740 430,760 442,764 432,785" stroke-width="2.5"/>
+    <polyline points="115,730 105,750 117,754 107,775" stroke-width="2.5"/>
+
+  </g>
+
+  <!-- ══ GROS POINTS BLEUS PLEINS ══ -->
+  <g fill="#3FAEE8" stroke="none">
+    <circle cx="175" cy="35"  r="5.5"/>
+    <circle cx="540" cy="58"  r="7"/>
+    <circle cx="415" cy="22"  r="4.5"/>
+    <circle cx="680" cy="155" r="5"/>
+    <circle cx="270" cy="180" r="6"/>
+    <circle cx="60"  cy="195" r="4.5"/>
+    <circle cx="750" cy="280" r="6.5"/>
+    <circle cx="310" cy="310" r="5"/>
+    <circle cx="470" cy="365" r="7"/>
+    <circle cx="175" cy="400" r="4.5"/>
+    <circle cx="640" cy="380" r="5"/>
+    <circle cx="35"  cy="380" r="6"/>
+    <circle cx="760" cy="435" r="4.5"/>
+    <circle cx="325" cy="460" r="5.5"/>
+    <circle cx="515" cy="530" r="7"/>
+    <circle cx="90"  cy="540" r="5"/>
+    <circle cx="700" cy="595" r="6"/>
+    <circle cx="165" cy="640" r="4.5"/>
+    <circle cx="430" cy="600" r="5.5"/>
+    <circle cx="305" cy="715" r="6"/>
+    <circle cx="760" cy="750" r="4.5"/>
+    <circle cx="530" cy="770" r="5"/>
+  </g>
+</svg>

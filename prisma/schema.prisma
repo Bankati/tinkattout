@@ -1,0 +1,47 @@
+datasource db {
+  provider  = "postgresql"
+  url       = env("DATABASE_URL")
+  directUrl = env("DIRECT_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+model Contact {
+  id        Int       @id @default(autoincrement())
+  name      String
+  email     String
+  subject   String?
+  message   String
+  repliedAt DateTime?
+  createdAt DateTime  @default(now())
+}
+
+model Registration {
+  id          Int      @id @default(autoincrement())
+  studentName String
+  parentName  String
+  email       String
+  phone       String
+  gradeLevel  String
+  status      String   @default("PENDING") // PENDING, APPROVED, REJECTED
+  createdAt   DateTime @default(now())
+}
+
+model Admin {
+  id       Int    @id @default(autoincrement())
+  email    String @unique
+  password String // Hashed
+}
+
+model News {
+  id        Int      @id @default(autoincrement())
+  title     String
+  slug      String   @unique
+  content   String
+  imageUrl  String?
+  category  String   @default("Annonces") // Annonces, Événements, Pédagogie
+  published Boolean  @default(true)
+  createdAt DateTime @default(now())
+}
