@@ -1,9 +1,10 @@
 import Link from "next/link";
-import { MapPin, Phone, Mail, Clock, ArrowRight } from "lucide-react";
+import { MapPin, Phone, Mail, Clock, ArrowRight, Navigation } from "lucide-react";
 import { Container } from "@/components/site/Container";
-import { siteConfig } from "@/config/site";
+import { siteConfig, phoneHref, emailHref, directionsHref, mapEmbedSrc, mapLargeHref } from "@/config/site";
 import { ContactForm } from "./ContactForm";
 import { FadeIn } from "@/components/ui/motion";
+import { boutonOr, boutonMarine, tailleBouton, surtitreOr } from "@/components/ui/palette";
 
 export const metadata = {
   title: "Contact — École Tinka-Tout",
@@ -12,12 +13,13 @@ export const metadata = {
 
 export default function ContactPage() {
   return (
-    <div className="min-h-screen bg-[#eaf5f4]">
+    <div className="min-h-screen bg-surface-ciel">
 
       {/* ── Titre centré ──────────────────────────────── */}
       <section className="pt-16 pb-12 sm:pt-20 sm:pb-14 text-center">
-        <FadeIn>
-          <p className="text-xs font-bold uppercase tracking-widest text-primary/50 mb-3">
+        {/* Haut de page : fondu CSS, visible même sans JavaScript */}
+        <div className="animate-fade-up px-4">
+          <p className={`${surtitreOr} mx-auto mb-4`}>
             Nous joindre
           </p>
           <h1 className="font-heading text-4xl font-bold text-foreground sm:text-5xl">
@@ -27,27 +29,28 @@ export default function ContactPage() {
             Nous créons un environnement bienveillant où chaque enfant s&apos;épanouit.
             N&apos;hésitez pas à nous écrire ou à nous appeler — nous sommes là pour vous.
           </p>
-        </FadeIn>
+        </div>
       </section>
 
       {/* ── Carte deux colonnes ───────────────────────── */}
       <section className="pb-20 sm:pb-24">
         <Container>
-          <FadeIn delay={0.1}>
-            <div className="rounded-2xl overflow-hidden shadow-2xl grid lg:grid-cols-5">
+          {/* Carte affichée sans attendre le JavaScript (formulaire + coordonnées) */}
+          <div className="animate-fade-up [animation-delay:80ms]">
+            <div className="rounded-carte overflow-hidden shadow-2xl grid lg:grid-cols-5">
 
               {/* ── Colonne gauche — infos (fond navy) ── */}
-              <div className="relative bg-primary px-8 py-10 lg:col-span-2 flex flex-col overflow-hidden">
+              <div className="relative bg-primary px-6 py-10 sm:px-8 lg:col-span-2 flex flex-col overflow-hidden">
 
                 {/* Cercles décoratifs */}
-                <div className="pointer-events-none absolute -bottom-10 -right-10 h-64 w-64 rounded-full bg-white/5" />
-                <div className="pointer-events-none absolute bottom-16 right-8 h-36 w-36 rounded-full bg-white/5" />
+                <div aria-hidden="true" className="pointer-events-none absolute -bottom-10 -right-10 h-64 w-64 rounded-full bg-white/5" />
+                <div aria-hidden="true" className="pointer-events-none absolute bottom-16 right-8 h-36 w-36 rounded-full bg-white/5" />
 
                 <div className="relative z-10 flex flex-col flex-1">
                   <h2 className="font-heading text-xl font-bold text-white mb-2">
                     Informations de contact
                   </h2>
-                  <p className="text-white/55 text-sm mb-10 leading-relaxed">
+                  <p className="text-white/80 text-sm mb-10 leading-relaxed">
                     N&apos;hésitez pas à nous écrire ou à nous appeler directement.
                     Notre équipe se fera un plaisir de vous renseigner.
                   </p>
@@ -59,12 +62,12 @@ export default function ContactPage() {
                         <Phone style={{ height: "1.125rem", width: "1.125rem" }} />
                       </div>
                       <div>
-                        <p className="text-[10px] font-bold uppercase tracking-widest text-white/40 mb-1">
+                        <p className="text-xs font-bold uppercase tracking-widest text-white/75 mb-1">
                           Téléphone
                         </p>
                         <a
-                          href={`tel:${siteConfig.contact.phone}`}
-                          className="text-sm text-white hover:text-secondary transition-colors font-medium"
+                          href={phoneHref}
+                          className="inline-flex min-h-11 items-center text-sm text-white hover:text-secondary transition-colors font-medium"
                         >
                           {siteConfig.contact.phone}
                         </a>
@@ -77,12 +80,12 @@ export default function ContactPage() {
                         <Mail style={{ height: "1.125rem", width: "1.125rem" }} />
                       </div>
                       <div>
-                        <p className="text-[10px] font-bold uppercase tracking-widest text-white/40 mb-1">
+                        <p className="text-xs font-bold uppercase tracking-widest text-white/75 mb-1">
                           Email
                         </p>
                         <a
-                          href={`mailto:${siteConfig.contact.email}`}
-                          className="text-sm text-white hover:text-secondary transition-colors font-medium break-all"
+                          href={emailHref}
+                          className="inline-flex min-h-11 items-center text-sm text-white hover:text-secondary transition-colors font-medium break-all"
                         >
                           {siteConfig.contact.email}
                         </a>
@@ -95,12 +98,22 @@ export default function ContactPage() {
                         <MapPin style={{ height: "1.125rem", width: "1.125rem" }} />
                       </div>
                       <div>
-                        <p className="text-[10px] font-bold uppercase tracking-widest text-white/40 mb-1">
+                        <p className="text-xs font-bold uppercase tracking-widest text-white/75 mb-1">
                           Adresse
                         </p>
                         <p className="text-sm text-white font-medium leading-relaxed">
                           {siteConfig.contact.address}
                         </p>
+                        <a
+                          href={directionsHref}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="inline-flex min-h-11 items-center gap-1.5 text-sm font-semibold text-secondary hover:text-white transition-colors"
+                        >
+                          <Navigation className="h-4 w-4" aria-hidden="true" />
+                          Itinéraire
+                          <span className="sr-only"> (s&apos;ouvre dans Google Maps)</span>
+                        </a>
                       </div>
                     </li>
 
@@ -110,17 +123,17 @@ export default function ContactPage() {
                         <Clock style={{ height: "1.125rem", width: "1.125rem" }} />
                       </div>
                       <div>
-                        <p className="text-[10px] font-bold uppercase tracking-widest text-white/40 mb-1">
+                        <p className="text-xs font-bold uppercase tracking-widest text-white/75 mb-1">
                           Horaires
                         </p>
                         <ul className="space-y-1">
                           {siteConfig.contact.hours.map((h) => (
                             <li key={h.label} className="text-sm text-white font-medium">
-                              <span className="text-white/55">{h.label} : </span>
+                              <span className="text-white/75">{h.label} : </span>
                               {h.value}
                             </li>
                           ))}
-                          <li className="text-sm text-white/40">Dimanche : Fermé</li>
+                          <li className="text-sm text-white/75">Dimanche : Fermé</li>
                         </ul>
                       </div>
                     </li>
@@ -129,7 +142,7 @@ export default function ContactPage() {
               </div>
 
               {/* ── Colonne droite — formulaire (fond blanc) ── */}
-              <div className="bg-white px-8 py-10 lg:col-span-3 lg:px-12">
+              <div className="bg-white px-6 py-10 sm:px-8 lg:col-span-3 lg:px-12">
                 <h2 className="font-heading text-xl font-bold text-foreground mb-1">
                   Envoyez-nous un message
                 </h2>
@@ -140,7 +153,46 @@ export default function ContactPage() {
               </div>
 
             </div>
-          </FadeIn>
+          </div>
+        </Container>
+      </section>
+
+      {/* ── Plan d'accès ──────────────────────────────── */}
+      <section className="pb-20 sm:pb-24" aria-labelledby="plan-acces">
+        <Container>
+          <div className="flex flex-wrap items-end justify-between gap-4 mb-6">
+            <div>
+              <p className={`${surtitreOr} mb-3`}>Plan d&apos;accès</p>
+              <h2 id="plan-acces" className="font-heading text-2xl font-bold text-foreground">
+                Venir à l&apos;école
+              </h2>
+            </div>
+            <a
+              href={directionsHref}
+              target="_blank"
+              rel="noopener noreferrer"
+              className={`${boutonMarine} ${tailleBouton.md}`}
+            >
+              <Navigation className="h-4 w-4" aria-hidden="true" />
+              Itinéraire
+              <span className="sr-only"> (s&apos;ouvre dans Google Maps)</span>
+            </a>
+          </div>
+          <div className="overflow-hidden rounded-carte shadow-xl bg-white">
+            <iframe
+              title={`Carte : emplacement de ${siteConfig.name}`}
+              src={mapEmbedSrc}
+              loading="lazy"
+              referrerPolicy="no-referrer-when-downgrade"
+              className="block h-80 w-full border-0 sm:h-96"
+            />
+          </div>
+          <p className="mt-3 text-sm text-muted-foreground">
+            <a href={mapLargeHref} target="_blank" rel="noopener noreferrer" className="inline-flex min-h-11 items-center underline hover:text-primary">
+              Agrandir la carte
+            </a>{" "}
+            · © les contributeurs d&apos;OpenStreetMap
+          </p>
         </Container>
       </section>
 
@@ -153,10 +205,10 @@ export default function ContactPage() {
             </p>
             <Link
               href="/inscription"
-              className="inline-flex items-center gap-2 h-12 rounded-sm bg-primary px-8 text-sm font-bold uppercase tracking-widest text-white hover:bg-primary/85 transition-all hover:-translate-y-0.5 hover:shadow-lg group"
+              className={`${boutonOr} ${tailleBouton.md} group`}
             >
               Déposer une pré-inscription
-              <ArrowRight className="h-4 w-4 group-hover:translate-x-1 transition-transform" />
+              <ArrowRight className="h-4 w-4 group-hover:translate-x-1 transition-transform" aria-hidden="true" />
             </Link>
           </FadeIn>
         </Container>

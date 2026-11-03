@@ -5,6 +5,9 @@ import { Container } from "@/components/site/Container";
 import { siteConfig } from "@/config/site";
 import { FadeIn, StaggerContainer, StaggerItem } from "@/components/ui/motion";
 import { ClassesAccordion } from "./ClassesAccordion";
+import {
+  boutonOr, boutonMarine, boutonContour, tailleBouton, surtitreOr, CYCLE_COULEURS,
+} from "@/components/ui/palette";
 
 export const metadata = {
   title: "Classes & Programme — École Tinka-Tout",
@@ -45,21 +48,28 @@ const CYCLES = [
     ages: "2 – 5 ans",
     img: siteConfig.images.feature1,
     desc: "Éveil, jeu et socialisation dans un environnement rassurant et bienveillant pour les plus petits.",
-    href: "#maternelle",
+    id: "maternelle",
+    couleur: CYCLE_COULEURS.maternelle,
+    // Pas encore de programme détaillé publié pour la maternelle : on oriente vers l'école.
+    cta: { href: "/contact", label: "Nous contacter" },
   },
   {
     title: "Primaire",
     ages: "6 – 11 ans",
     img: siteConfig.images.feature2,
     desc: "Apprentissages fondamentaux du CP au CM2 avec un encadrement rigoureux et personnalisé.",
-    href: "#primaire",
+    id: "primaire",
+    couleur: CYCLE_COULEURS.primaire,
+    cta: { href: "#programme", label: "Voir le programme" },
   },
   {
     title: "Périscolaire",
     ages: "Toutes classes",
     img: siteConfig.images.feature3,
     desc: "Activités artistiques, sportives et linguistiques proposées après les cours chaque soir.",
-    href: "#periscolaire",
+    id: "periscolaire",
+    couleur: CYCLE_COULEURS.periscolaire,
+    cta: { href: "/contact", label: "Nous contacter" },
   },
 ];
 
@@ -81,23 +91,23 @@ export default function ClassesPage() {
       ══════════════════════════════════════════════════ */}
       <section className="relative overflow-hidden bg-white py-16 sm:py-24">
 
-        {/* Blob décoratif arrière-plan */}
-        <div className="pointer-events-none absolute -top-32 -left-32 h-[520px] w-[520px] rounded-full bg-amber-50 blur-3xl opacity-70" />
-        <div className="pointer-events-none absolute bottom-0 right-0 h-64 w-64 rounded-full bg-[hsl(217,58%,95%)] blur-2xl opacity-80" />
+        {/* Halos décoratifs : or doux et ciel doux */}
+        <div aria-hidden="true" className="pointer-events-none absolute -top-32 -left-32 h-[520px] w-[520px] rounded-full bg-secondary-soft blur-3xl opacity-70" />
+        <div aria-hidden="true" className="pointer-events-none absolute bottom-0 right-0 h-64 w-64 rounded-full bg-surface-ciel blur-2xl opacity-80" />
 
-        {/* Dots colorés décoratifs */}
-        <div className="pointer-events-none absolute top-16 left-[44%] h-3.5 w-3.5 rounded-full bg-orange-400 hidden lg:block" />
-        <div className="pointer-events-none absolute top-[38%] right-[36%] h-3 w-3 rounded-full bg-emerald-500 hidden lg:block" />
-        <div className="pointer-events-none absolute bottom-[28%] left-[22%] h-3 w-3 rounded-full bg-blue-500 hidden lg:block" />
-        <div className="pointer-events-none absolute top-[55%] right-12 h-2.5 w-2.5 rounded-full bg-rose-500 hidden lg:block" />
-        <div className="pointer-events-none absolute top-24 right-[42%] h-2 w-2 rounded-full bg-amber-400 hidden lg:block" />
+        {/* Points de couleur décoratifs (immobiles, couleurs des cycles) */}
+        <div aria-hidden="true" className="pointer-events-none absolute top-16 left-[44%] h-3.5 w-3.5 rounded-full bg-cycle-maternelle hidden lg:block" />
+        <div aria-hidden="true" className="pointer-events-none absolute top-[38%] right-[36%] h-3 w-3 rounded-full bg-cycle-periscolaire hidden lg:block" />
+        <div aria-hidden="true" className="pointer-events-none absolute bottom-10 left-[8%] h-3 w-3 rounded-full bg-cycle-primaire hidden lg:block" />
+        <div aria-hidden="true" className="pointer-events-none absolute top-[55%] right-12 h-2.5 w-2.5 rounded-full bg-cycle-maternelle hidden lg:block" />
+        <div aria-hidden="true" className="pointer-events-none absolute top-24 right-[42%] h-2 w-2 rounded-full bg-secondary hidden lg:block" />
 
         <Container className="relative z-10">
           <div className="grid items-center gap-14 lg:grid-cols-2">
 
-            {/* ── Colonne texte ── */}
-            <FadeIn className="max-w-lg">
-              <p className="mb-4 inline-flex items-center gap-2 rounded-full bg-secondary/15 px-4 py-1.5 text-[11px] font-bold uppercase tracking-widest text-secondary">
+            {/* ── Colonne texte (haut de page : fondu CSS, visible sans JavaScript) ── */}
+            <div className="max-w-lg animate-fade-up">
+              <p className={`${surtitreOr} mb-4`}>
                 Nos niveaux
               </p>
               <h1 className="font-heading text-4xl font-bold leading-tight text-foreground sm:text-5xl lg:text-[3.25rem] lg:leading-[1.15]">
@@ -113,59 +123,53 @@ export default function ClassesPage() {
                 d&apos;un environnement stimulant.
               </p>
               <div className="mt-8 flex flex-wrap items-center gap-4">
-                <Link
-                  href="/inscription"
-                  className="inline-flex h-12 items-center gap-2.5 rounded-lg bg-foreground px-7 text-sm font-bold text-white transition-all hover:bg-foreground/85 hover:-translate-y-0.5 hover:shadow-lg group"
-                >
+                <Link href="/inscription" className={`${boutonOr} ${tailleBouton.md} group`}>
                   Pré-inscrire mon enfant
-                  <ArrowRight className="h-4 w-4 group-hover:translate-x-1 transition-transform" />
+                  <ArrowRight className="h-4 w-4 group-hover:translate-x-1 transition-transform" aria-hidden="true" />
                 </Link>
-                <Link
-                  href="#cycles"
-                  className="inline-flex h-12 items-center gap-2 text-sm font-bold text-muted-foreground hover:text-foreground transition-colors"
-                >
+                <Link href="#cycles" className={`${boutonContour} ${tailleBouton.md}`}>
                   Voir les cycles
-                  <ArrowRight className="h-4 w-4" />
+                  <ArrowRight className="h-4 w-4" aria-hidden="true" />
                 </Link>
               </div>
-            </FadeIn>
+            </div>
 
             {/* ── Colonne mosaïque ── */}
-            <FadeIn delay={0.15} className="hidden lg:block">
+            <div className="hidden lg:block animate-fade-up [animation-delay:120ms]">
               <div className="flex gap-3 h-[480px]">
 
                 {/* Colonne 1 */}
                 <div className="flex flex-1 flex-col gap-3">
-                  <div className="relative flex-1 overflow-hidden rounded-[2rem]">
+                  <div className="relative flex-1 overflow-hidden rounded-photo">
                     <Image src={MOSAIC_IMAGES[0]} alt="Élèves maternelle" fill className="object-cover" sizes="20vw" />
                   </div>
-                  <div className="relative flex-[0.75] overflow-hidden rounded-[2rem]">
+                  <div className="relative flex-[0.75] overflow-hidden rounded-photo">
                     <Image src={MOSAIC_IMAGES[3]} alt="Campus" fill className="object-cover" sizes="20vw" />
                   </div>
                 </div>
 
                 {/* Colonne 2 — décalée vers le bas */}
                 <div className="flex flex-1 flex-col gap-3 mt-8">
-                  <div className="relative flex-[0.75] overflow-hidden rounded-[2rem]">
+                  <div className="relative flex-[0.75] overflow-hidden rounded-photo">
                     <Image src={MOSAIC_IMAGES[1]} alt="Élèves primaire" fill className="object-cover" sizes="20vw" />
                   </div>
-                  <div className="relative flex-1 overflow-hidden rounded-[2rem]">
+                  <div className="relative flex-1 overflow-hidden rounded-photo">
                     <Image src={MOSAIC_IMAGES[4]} alt="Activités" fill className="object-cover" sizes="20vw" />
                   </div>
                 </div>
 
                 {/* Colonne 3 */}
                 <div className="flex flex-1 flex-col gap-3">
-                  <div className="relative flex-[0.65] overflow-hidden rounded-[2rem]">
+                  <div className="relative flex-[0.65] overflow-hidden rounded-photo">
                     <Image src={MOSAIC_IMAGES[2]} alt="Périscolaire" fill className="object-cover" sizes="20vw" />
                   </div>
-                  <div className="relative flex-1 overflow-hidden rounded-[2rem]">
+                  <div className="relative flex-1 overflow-hidden rounded-photo">
                     <Image src={MOSAIC_IMAGES[5]} alt="Élèves en cours" fill className="object-cover" sizes="20vw" />
                   </div>
                 </div>
 
               </div>
-            </FadeIn>
+            </div>
 
           </div>
         </Container>
@@ -174,10 +178,10 @@ export default function ClassesPage() {
       {/* ══════════════════════════════════════════════════
           NOS TROIS CYCLES — style cartes programmes
       ══════════════════════════════════════════════════ */}
-      <section id="cycles" className="py-20 bg-gray-50">
+      <section id="cycles" className="py-20 bg-muted">
         <Container>
           <FadeIn className="mb-14 text-center">
-            <p className="text-xs font-bold uppercase tracking-widest text-secondary mb-3">Organisation</p>
+            <p className={`${surtitreOr} mx-auto mb-3`}>Organisation</p>
             <h2 className="font-heading text-3xl font-bold text-foreground sm:text-4xl">
               Nos Trois Cycles
             </h2>
@@ -188,24 +192,25 @@ export default function ClassesPage() {
           </FadeIn>
 
           <StaggerContainer className="grid gap-7 sm:grid-cols-3">
-            {CYCLES.map(({ title, ages, img, desc, href }) => (
-              <StaggerItem key={title}>
-                <div className="group flex flex-col overflow-hidden rounded-2xl border border-border bg-white shadow-sm hover:shadow-xl transition-all duration-300 hover:-translate-y-1">
+            {CYCLES.map(({ title, ages, img, desc, id, cta, couleur }) => (
+              <StaggerItem key={title} className="h-full">
+                {/* Même couleur de cycle que sur l'accueil : bord vif et badge doux */}
+                <div id={id} className={`group flex h-full flex-col overflow-hidden rounded-carte border border-border border-t-[6px] ${couleur.bord} bg-card shadow-sm hover:shadow-xl transition-all duration-300 hover:-translate-y-1`}>
 
-                  {/* Image carrée */}
-                  <div className="relative aspect-[4/3] overflow-hidden">
+                  {/* Image */}
+                  <div className="relative mx-3 mt-3 aspect-[4/3] overflow-hidden rounded-2xl">
                     <Image
                       src={img}
-                      alt={title}
+                      alt=""
                       fill
                       className="object-cover transition-transform duration-700 group-hover:scale-105"
-                      sizes="(max-width: 768px) 100vw, 33vw"
+                      sizes="(min-width: 640px) 33vw, 100vw"
                     />
                   </div>
 
                   {/* Contenu centré */}
                   <div className="flex flex-1 flex-col items-center px-6 py-7 text-center">
-                    <span className="mb-2 inline-block rounded-full bg-secondary/15 px-3 py-1 text-[10px] font-bold uppercase tracking-widest text-secondary">
+                    <span className={`mb-2 inline-block rounded-full px-3 py-1 text-xs font-bold uppercase tracking-widest ${couleur.doux} ${couleur.texte}`}>
                       {ages}
                     </span>
                     <h3 className="font-heading text-xl font-bold text-foreground mt-1">
@@ -215,11 +220,11 @@ export default function ClassesPage() {
                       {desc}
                     </p>
                     <Link
-                      href={href}
-                      className="mt-6 inline-flex h-10 items-center gap-2 rounded-lg bg-foreground px-5 text-xs font-bold uppercase tracking-wider text-white transition-all hover:bg-primary hover:-translate-y-0.5 hover:shadow-md group/btn"
+                      href={cta.href}
+                      className={`${boutonMarine} ${tailleBouton.sm} mt-6 group/btn`}
                     >
-                      En savoir plus
-                      <ArrowRight className="h-3.5 w-3.5 group-hover/btn:translate-x-0.5 transition-transform" />
+                      {cta.label}
+                      <ArrowRight className="h-3.5 w-3.5 group-hover/btn:translate-x-0.5 transition-transform" aria-hidden="true" />
                     </Link>
                   </div>
 
@@ -233,11 +238,11 @@ export default function ClassesPage() {
       {/* ══════════════════════════════════════════════════
           PROGRAMME DÉTAILLÉ CP→CM2
       ══════════════════════════════════════════════════ */}
-      <section className="py-20 bg-white">
+      <section id="programme" className="py-20 bg-white">
         <Container>
           <FadeIn className="mb-12">
-            <p className="text-xs font-bold uppercase tracking-widest text-secondary mb-2">Détail</p>
-            <h2 className="gold-underline font-heading text-3xl font-bold text-foreground">
+            <p className={`${surtitreOr} mb-3`}>Détail</p>
+            <h2 className="font-heading text-3xl font-bold text-foreground">
               Programme par Niveau
             </h2>
             <p className="mt-4 text-muted-foreground max-w-2xl">
@@ -253,36 +258,37 @@ export default function ClassesPage() {
       {/* ══════════════════════════════════════════════════
           IMAGE + CTA
       ══════════════════════════════════════════════════ */}
-      <section className="py-20 bg-gray-50">
+      <section className="py-20 bg-muted">
         <Container>
           <div className="grid gap-12 lg:grid-cols-2 items-center">
             <FadeIn>
-              <div className="overflow-hidden rounded-2xl shadow-xl">
+              <div className="overflow-hidden rounded-photo shadow-xl">
                 <Image
                   src={siteConfig.images.campus}
                   alt="Élèves en classe"
                   width={680}
                   height={420}
+                  sizes="(min-width: 1024px) 560px, 100vw"
                   className="w-full h-72 object-cover"
                 />
               </div>
             </FadeIn>
             <FadeIn delay={0.15} className="space-y-5">
-              <p className="text-xs font-bold uppercase tracking-widest text-secondary">Rejoindre Tinka-Tout</p>
-              <h2 className="gold-underline font-heading text-2xl font-bold text-foreground sm:text-3xl">
+              <p className={surtitreOr}>Rejoindre Tinka-Tout</p>
+              <h2 className="font-heading text-2xl font-bold text-foreground sm:text-3xl">
                 Une place pour votre enfant
               </h2>
               <p className="text-muted-foreground leading-relaxed">
-                Les inscriptions pour l&apos;année 2025-2026 sont ouvertes.
+                Les inscriptions pour l&apos;année {siteConfig.schoolYear} sont ouvertes.
                 Soumettez une demande de pré-inscription en ligne et nous vous
                 recontacterons sous 48h pour finaliser le dossier.
               </p>
               <Link
                 href="/inscription"
-                className="inline-flex items-center gap-2 h-12 rounded-lg bg-primary px-7 text-sm font-bold uppercase tracking-widest text-white hover:bg-primary/85 transition-all hover:-translate-y-0.5 hover:shadow-lg group"
+                className={`${boutonOr} ${tailleBouton.md} group`}
               >
                 Pré-inscrire mon enfant
-                <ArrowRight className="h-4 w-4 group-hover:translate-x-1 transition-transform" />
+                <ArrowRight className="h-4 w-4 group-hover:translate-x-1 transition-transform" aria-hidden="true" />
               </Link>
             </FadeIn>
           </div>

@@ -1,6 +1,12 @@
 "use client";
 
 import { useRouter, useSearchParams } from "next/navigation";
+import { GRADE_LEVELS, REGISTRATION_STATUSES } from "@/config/school";
+
+const CYCLES = Array.from(new Set(GRADE_LEVELS.map((g) => g.cycle)));
+
+const selectClass =
+  "h-11 rounded-lg border border-input bg-background px-3 text-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring";
 
 export function InscriptionsFilters() {
   const router = useRouter();
@@ -14,30 +20,43 @@ export function InscriptionsFilters() {
   }
 
   return (
-    <div className="flex flex-wrap gap-2">
-      <select
-        value={searchParams.get("status") || ""}
-        onChange={(e) => setFilter("status", e.target.value)}
-        className="h-9 rounded-lg border border-input bg-background px-3 text-sm"
-      >
-        <option value="">Tous les statuts</option>
-        <option value="PENDING">En attente</option>
-        <option value="APPROVED">Approuvé</option>
-        <option value="REJECTED">Refusé</option>
-      </select>
-      <select
-        value={searchParams.get("classe") || ""}
-        onChange={(e) => setFilter("classe", e.target.value)}
-        className="h-9 rounded-lg border border-input bg-background px-3 text-sm"
-      >
-        <option value="">Toutes les classes</option>
-        <option value="CP">CP</option>
-        <option value="CE1">CE1</option>
-        <option value="CE2">CE2</option>
-        <option value="CM1">CM1</option>
-        <option value="CM2">CM2</option>
-        <option value="6ème">6ème</option>
-      </select>
+    <div className="flex flex-wrap gap-3" role="group" aria-label="Filtrer les inscriptions">
+      <div className="flex flex-col gap-1">
+        <label htmlFor="filtre-statut" className="text-xs font-medium text-muted-foreground">
+          Statut
+        </label>
+        <select
+          id="filtre-statut"
+          value={searchParams.get("status") || ""}
+          onChange={(e) => setFilter("status", e.target.value)}
+          className={selectClass}
+        >
+          <option value="">Tous les statuts</option>
+          {Object.entries(REGISTRATION_STATUSES).map(([value, label]) => (
+            <option key={value} value={value}>{label}</option>
+          ))}
+        </select>
+      </div>
+      <div className="flex flex-col gap-1">
+        <label htmlFor="filtre-classe" className="text-xs font-medium text-muted-foreground">
+          Classe
+        </label>
+        <select
+          id="filtre-classe"
+          value={searchParams.get("classe") || ""}
+          onChange={(e) => setFilter("classe", e.target.value)}
+          className={selectClass}
+        >
+          <option value="">Toutes les classes</option>
+          {CYCLES.map((cycle) => (
+            <optgroup key={cycle} label={cycle}>
+              {GRADE_LEVELS.filter((g) => g.cycle === cycle).map((g) => (
+                <option key={g.value} value={g.value}>{g.label}</option>
+              ))}
+            </optgroup>
+          ))}
+        </select>
+      </div>
     </div>
   );
 }

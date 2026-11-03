@@ -2,11 +2,12 @@ import type { Metadata } from "next";
 import { Poppins, Quicksand } from "next/font/google";
 import "./globals.css";
 import { cn } from "@/lib/utils";
+import { MotionProvider } from "@/components/ui/motion-provider";
 
 // Configuration de la police pour le corps du texte (Body)
 const poppins = Poppins({
   subsets: ["latin"],
-  weight: ["300", "400", "500", "600", "700"],
+  weight: ["400", "500", "600", "700"],
   variable: "--font-poppins",
   display: "swap",
 });
@@ -32,7 +33,13 @@ export default function RootLayout({
   return (
     <html lang="fr" className={cn(poppins.variable, quicksand.variable)}>
       <body className="min-h-screen bg-background font-sans antialiased text-foreground">
-        {children}
+        {/* Sans JavaScript, les blocs animés au défilement restent visibles. */}
+        <noscript
+          dangerouslySetInnerHTML={{
+            __html: "<style>[data-reveal]{opacity:1!important;transform:none!important}</style>",
+          }}
+        />
+        <MotionProvider>{children}</MotionProvider>
       </body>
     </html>
   );
