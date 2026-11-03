@@ -1,6 +1,22 @@
 "use client";
 
 import type { Registration } from "@prisma/client";
+import { REGISTRATION_STATUSES, type RegistrationStatus } from "@/config/school";
+
+// Injection de formule (Excel, LibreOffice) : une cellule qui commence par = + - @ (ou tabulation,
+// retour chariot) serait exécutée comme une formule. Le préfixe ' la force en texte.
+const FORMULA_START = /^[=+\-@\t\r]/;
+
+function csvCell(value: string): string {
+  const safe = FORMULA_START.test(value) ? `'${value}` : value;
+  return `"${safe.replace(/"/g, '""')}"`;
+}
+
+function statusLabel(status: string): string {
+  return Object.hasOwn(REGISTRATION_STATUSES, status)
+    ? REGISTRATION_STATUSES[status as RegistrationStatus]
+    : status;
+}
 
 export function ExportCsvButton({ data }: { data: Registration[] }) {
   function download() {
@@ -11,10 +27,10 @@ export function ExportCsvButton({ data }: { data: Registration[] }) {
       r.parentName,
       r.email,
       r.phone,
-      r.status,
+      statusLabel(r.status),
       new Date(r.createdAt).toLocaleDateString("fr-FR"),
     ]);
-    const csv = [headers.join(";"), ...rows.map((row) => row.map((c) => `"${String(c).replace(/"/g, '""')}"`).join(";"))].join("\n");
+    const csv = [headers.join(";"), ...rows.map((row) => row.map(csvCell).join(";"))].join("\n");
     const blob = new Blob(["\uFEFF" + csv], { type: "text/csv;charset=utf-8" });
     const url = URL.createObjectURL(blob);
     const a = document.createElement("a");
