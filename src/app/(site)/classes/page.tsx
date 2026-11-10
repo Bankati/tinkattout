@@ -2,16 +2,18 @@ import Image from "next/image";
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 import { Container } from "@/components/site/Container";
+import { PageHero, Or } from "@/components/site/PageHero";
+import { EscalierNiveaux, Confetti } from "@/components/site/hero-dessins";
 import { siteConfig } from "@/config/site";
 import { FadeIn, StaggerContainer, StaggerItem } from "@/components/ui/motion";
 import { ClassesAccordion } from "./ClassesAccordion";
 import {
-  boutonOr, boutonMarine, boutonContour, tailleBouton, surtitreOr, CYCLE_COULEURS,
+  boutonOr, boutonMarine, boutonContourBlanc, tailleBouton, surtitreOr, CYCLE_COULEURS,
 } from "@/components/ui/palette";
 
 export const metadata = {
   title: "Classes & Programme — École Tinka-Tout",
-  description: "Parcours pédagogique du CP au CM2 — objectifs, matières et compétences par niveau.",
+  description: "De la Petite Section au CM2 : nos cycles, objectifs, matières et compétences par niveau.",
 };
 
 const CLASSES = [
@@ -73,107 +75,34 @@ const CYCLES = [
   },
 ];
 
-/* Images pour la mosaïque hero */
-const MOSAIC_IMAGES = [
-  siteConfig.images.feature1,
-  siteConfig.images.feature2,
-  siteConfig.images.feature3,
-  siteConfig.images.campus,
-  "/images/pexels-rdne-8363154.jpg",
-  "/images/pexels-yankrukov-8613319.jpg",
-];
-
 export default function ClassesPage() {
   return (
     <>
       {/* ══════════════════════════════════════════════════
-          HERO — style split : texte gauche + mosaïque droite
+          BANDEAU — l'escalier de la PS au CM2 (variante A, sans photo)
       ══════════════════════════════════════════════════ */}
-      <section className="relative overflow-hidden bg-white py-16 sm:py-24">
-
-        {/* Halos décoratifs : or doux et ciel doux */}
-        <div aria-hidden="true" className="pointer-events-none absolute -top-32 -left-32 h-[520px] w-[520px] rounded-full bg-secondary-soft blur-3xl opacity-70" />
-        <div aria-hidden="true" className="pointer-events-none absolute bottom-0 right-0 h-64 w-64 rounded-full bg-surface-ciel blur-2xl opacity-80" />
-
-        {/* Points de couleur décoratifs (immobiles, couleurs des cycles) */}
-        <div aria-hidden="true" className="pointer-events-none absolute top-16 left-[44%] h-3.5 w-3.5 rounded-full bg-cycle-maternelle hidden lg:block" />
-        <div aria-hidden="true" className="pointer-events-none absolute top-[38%] right-[36%] h-3 w-3 rounded-full bg-cycle-periscolaire hidden lg:block" />
-        <div aria-hidden="true" className="pointer-events-none absolute bottom-10 left-[8%] h-3 w-3 rounded-full bg-cycle-primaire hidden lg:block" />
-        <div aria-hidden="true" className="pointer-events-none absolute top-[55%] right-12 h-2.5 w-2.5 rounded-full bg-cycle-maternelle hidden lg:block" />
-        <div aria-hidden="true" className="pointer-events-none absolute top-24 right-[42%] h-2 w-2 rounded-full bg-secondary hidden lg:block" />
-
-        <Container className="relative z-10">
-          <div className="grid items-center gap-14 lg:grid-cols-2">
-
-            {/* ── Colonne texte (haut de page : fondu CSS, visible sans JavaScript) ── */}
-            <div className="max-w-lg animate-fade-up">
-              <p className={`${surtitreOr} mb-4`}>
-                Nos niveaux
-              </p>
-              <h1 className="font-heading text-4xl font-bold leading-tight text-foreground sm:text-5xl lg:text-[3.25rem] lg:leading-[1.15]">
-                L&apos;excellence commence
-                <br />
-                dès la première
-                <br />
-                <span className="text-primary">classe</span>
-              </h1>
-              <p className="mt-6 text-muted-foreground leading-relaxed max-w-md">
-                De la Maternelle au CM2, chaque enfant bénéficie d&apos;un
-                encadrement personnalisé, de méthodes pédagogiques actives et
-                d&apos;un environnement stimulant.
-              </p>
-              <div className="mt-8 flex flex-wrap items-center gap-4">
-                <Link href="/inscription" className={`${boutonOr} ${tailleBouton.md} group`}>
-                  Pré-inscrire mon enfant
-                  <ArrowRight className="h-4 w-4 group-hover:translate-x-1 transition-transform" aria-hidden="true" />
-                </Link>
-                <Link href="#cycles" className={`${boutonContour} ${tailleBouton.md}`}>
-                  Voir les cycles
-                  <ArrowRight className="h-4 w-4" aria-hidden="true" />
-                </Link>
-              </div>
-            </div>
-
-            {/* ── Colonne mosaïque ── */}
-            <div className="hidden lg:block animate-fade-up [animation-delay:120ms]">
-              <div className="flex gap-3 h-[480px]">
-
-                {/* Colonne 1 */}
-                <div className="flex flex-1 flex-col gap-3">
-                  <div className="relative flex-1 overflow-hidden rounded-photo">
-                    <Image src={MOSAIC_IMAGES[0]} alt="Élèves maternelle" fill className="object-cover" sizes="20vw" />
-                  </div>
-                  <div className="relative flex-[0.75] overflow-hidden rounded-photo">
-                    <Image src={MOSAIC_IMAGES[3]} alt="Campus" fill className="object-cover" sizes="20vw" />
-                  </div>
-                </div>
-
-                {/* Colonne 2 — décalée vers le bas */}
-                <div className="flex flex-1 flex-col gap-3 mt-8">
-                  <div className="relative flex-[0.75] overflow-hidden rounded-photo">
-                    <Image src={MOSAIC_IMAGES[1]} alt="Élèves primaire" fill className="object-cover" sizes="20vw" />
-                  </div>
-                  <div className="relative flex-1 overflow-hidden rounded-photo">
-                    <Image src={MOSAIC_IMAGES[4]} alt="Activités" fill className="object-cover" sizes="20vw" />
-                  </div>
-                </div>
-
-                {/* Colonne 3 */}
-                <div className="flex flex-1 flex-col gap-3">
-                  <div className="relative flex-[0.65] overflow-hidden rounded-photo">
-                    <Image src={MOSAIC_IMAGES[2]} alt="Périscolaire" fill className="object-cover" sizes="20vw" />
-                  </div>
-                  <div className="relative flex-1 overflow-hidden rounded-photo">
-                    <Image src={MOSAIC_IMAGES[5]} alt="Élèves en cours" fill className="object-cover" sizes="20vw" />
-                  </div>
-                </div>
-
-              </div>
-            </div>
-
-          </div>
-        </Container>
-      </section>
+      <PageHero
+        surtitre="Nos niveaux"
+        titre={<>L&apos;excellence commence<br />dès la première<br /><Or>classe</Or></>}
+        titreClassName="lg:text-[2.75rem] lg:leading-[1.15]"
+        description="De la Maternelle au CM2, chaque enfant bénéficie d'un encadrement personnalisé, de méthodes pédagogiques actives et d'un environnement stimulant."
+        actions={<>
+          <Link href="/inscription" className={`${boutonOr} ${tailleBouton.md} group`}>
+            Pré-inscrire mon enfant
+            <ArrowRight className="h-4 w-4 group-hover:translate-x-1 transition-transform" aria-hidden="true" />
+          </Link>
+          <Link href="#cycles" className={`${boutonContourBlanc} ${tailleBouton.md}`}>
+            Voir les cycles
+            <ArrowRight className="h-4 w-4" aria-hidden="true" />
+          </Link>
+        </>}
+        dessin={<EscalierNiveaux cycles={CYCLES.slice(0, 2).map((c) => ({ nom: c.title, ages: c.ages }))} />}
+        confettis={<>
+          <Confetti.Point className="right-[5%] top-[10%] bg-cycle-maternelle" />
+          <Confetti.Point className="right-[44%] top-[14%] h-2.5 w-2.5 bg-vie-ecole" />
+        </>}
+        vague="muted"
+      />
 
       {/* ══════════════════════════════════════════════════
           NOS TROIS CYCLES — style cartes programmes

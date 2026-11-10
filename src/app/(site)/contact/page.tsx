@@ -1,6 +1,8 @@
 import Link from "next/link";
 import { MapPin, Phone, Mail, Clock, ArrowRight, Navigation } from "lucide-react";
 import { Container } from "@/components/site/Container";
+import { PageHero } from "@/components/site/PageHero";
+import { LettreCarte, Confetti } from "@/components/site/hero-dessins";
 import { siteConfig, phoneHref, emailHref, directionsHref, mapEmbedSrc, mapLargeHref } from "@/config/site";
 import { ContactForm } from "./ContactForm";
 import { FadeIn } from "@/components/ui/motion";
@@ -15,22 +17,21 @@ export default function ContactPage() {
   return (
     <div className="min-h-screen bg-surface-ciel">
 
-      {/* ── Titre centré ──────────────────────────────── */}
-      <section className="pt-16 pb-12 sm:pt-20 sm:pb-14 text-center">
-        {/* Haut de page : fondu CSS, visible même sans JavaScript */}
-        <div className="animate-fade-up px-4">
-          <p className={`${surtitreOr} mx-auto mb-4`}>
-            Nous joindre
-          </p>
-          <h1 className="font-heading text-4xl font-bold text-foreground sm:text-5xl">
-            Prenons contact
-          </h1>
-          <p className="mt-4 max-w-lg mx-auto text-muted-foreground text-base leading-relaxed">
-            Nous créons un environnement bienveillant où chaque enfant s&apos;épanouit.
-            N&apos;hésitez pas à nous écrire ou à nous appeler — nous sommes là pour vous.
-          </p>
-        </div>
-      </section>
+      {/* ── Bandeau : la lettre et la carte (fond ciel quadrillé) ── */}
+      <PageHero
+        ton="ciel"
+        surtitre="Nous joindre"
+        titre="Prenons contact"
+        description={<>Nous créons un environnement bienveillant où chaque enfant s&apos;épanouit. N&apos;hésitez pas à nous écrire ou à nous appeler — nous sommes là pour vous.</>}
+        ariane="Contact"
+        dessin={<LettreCarte />}
+        confettis={<>
+          <Confetti.Point className="right-[47%] top-[14%] bg-cycle-maternelle" />
+          <Confetti.Etincelle className="right-[3%] top-[10%]" />
+          <Confetti.Point className="right-[46%] top-[80%] h-2.5 w-2.5 bg-vie-ecole" />
+        </>}
+        vague="surface-ciel"
+      />
 
       {/* ── Carte deux colonnes ───────────────────────── */}
       <section className="pb-20 sm:pb-24">

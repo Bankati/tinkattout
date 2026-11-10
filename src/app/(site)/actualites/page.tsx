@@ -3,11 +3,13 @@ import Link from "next/link";
 import { connection } from "next/server";
 import { Calendar, Tag, ArrowRight, Images } from "lucide-react";
 import { Container } from "@/components/site/Container";
+import { PageHero, Or } from "@/components/site/PageHero";
+import { TableauAffichage, Confetti } from "@/components/site/hero-dessins";
 import { siteConfig } from "@/config/site";
 import { FadeIn, StaggerContainer, StaggerItem } from "@/components/ui/motion";
 import { logServerError, prisma } from "@/lib/db";
 import { GalerieGrid } from "./GalerieGrid";
-import { boutonOr, tailleBouton } from "@/components/ui/palette";
+import { boutonOr, boutonContourBlanc, tailleBouton } from "@/components/ui/palette";
 
 /* Vie de l'école = prune (vie-ecole) : surtitres en badge prune doux (6,53:1). */
 const surtitrePrune =
@@ -36,55 +38,27 @@ export default async function VieEcolePage() {
   return (
     <>
       {/* ══════════════════════════════════════════════
-          HERO
+          BANDEAU — le tableau d'affichage (actualités et galerie)
       ══════════════════════════════════════════════ */}
-      <section className="relative bg-primary py-16 sm:py-20 overflow-hidden">
-        {/* Motif fournitures scolaires */}
-        <div
-          aria-hidden="true"
-          className="absolute inset-0 pointer-events-none"
-          style={{
-            backgroundImage: "url('/images/pattern-ecole.svg')",
-            backgroundSize: "550px 550px",
-            backgroundRepeat: "repeat",
-            opacity: 0.09,
-          }}
-        />
-        <div className="absolute left-0 top-0 bottom-0 w-1 bg-secondary" />
-        <Container className="relative z-10">
-          <p className="text-xs font-bold uppercase tracking-widest text-secondary mb-3">
-            Vie de l&apos;école
-          </p>
-          <h1 className="font-heading text-4xl font-bold text-white sm:text-5xl">
-            Actualités & Galerie
-          </h1>
-          <p className="mt-4 max-w-2xl text-white/70 text-lg">
-            Annonces, événements et moments de vie à l&apos;École Tinka-Tout.
-          </p>
-          {/* Ancres rapides */}
-          <div className="mt-6 flex flex-wrap items-center gap-3">
-            <a
-              href="#actualites"
-              className="inline-flex min-h-11 items-center gap-2 rounded-full border-2 border-white/75 px-5 text-xs font-bold uppercase tracking-widest text-white hover:bg-white/10 transition-colors"
-            >
-              <Tag className="h-3.5 w-3.5 text-secondary" aria-hidden="true" /> Actualités
-            </a>
-            <a
-              href="#galerie"
-              className="inline-flex min-h-11 items-center gap-2 rounded-full border-2 border-white/75 px-5 text-xs font-bold uppercase tracking-widest text-white hover:bg-white/10 transition-colors"
-            >
-              <Images className="h-3.5 w-3.5 text-secondary" aria-hidden="true" /> Galerie photos
-            </a>
-          </div>
-          <nav aria-label="Fil d'Ariane" className="mt-5 text-xs text-white/80">
-            <ol className="flex items-center gap-2">
-              <li><Link href="/" className="inline-flex min-h-11 items-center hover:text-white transition-colors">Accueil</Link></li>
-              <li aria-hidden="true">/</li>
-              <li aria-current="page" className="text-secondary">Vie de l&apos;école</li>
-            </ol>
-          </nav>
-        </Container>
-      </section>
+      <PageHero
+        surtitre="Vie de l'école"
+        titre={<>Actualités <Or>&amp;</Or> Galerie</>}
+        description={<>Annonces, événements et moments de vie à l&apos;École <span className="whitespace-nowrap">Tinka-Tout</span>.</>}
+        actions={<>
+          <a href="#actualites" className={`${boutonContourBlanc} ${tailleBouton.sm}`}>
+            <Tag className="h-3.5 w-3.5 text-secondary" aria-hidden="true" /> Actualités
+          </a>
+          <a href="#galerie" className={`${boutonContourBlanc} ${tailleBouton.sm}`}>
+            <Images className="h-3.5 w-3.5 text-secondary" aria-hidden="true" /> Galerie photos
+          </a>
+        </>}
+        ariane="Vie de l'école"
+        dessin={<TableauAffichage />}
+        confettis={<>
+          <Confetti.Point className="right-[46%] top-[12%] h-3 w-3 bg-vie-ecole" />
+          <Confetti.Triangle className="right-[3%] top-[80%] bg-vie-ecole" />
+        </>}
+      />
 
       {/* ══════════════════════════════════════════════
           SECTION ACTUALITÉS

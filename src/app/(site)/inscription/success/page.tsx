@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { CheckCircle2, Home, Phone } from "lucide-react";
 import { Container } from "@/components/site/Container";
+import { Confetti } from "@/components/site/hero-dessins";
 import { siteConfig, phoneHref } from "@/config/site";
 import { boutonMarine, boutonContour, tailleBouton } from "@/components/ui/palette";
 
@@ -11,11 +12,22 @@ export const metadata = {
 
 export default function InscriptionSuccessPage() {
   return (
-    <section className="py-20 sm:py-32 bg-white">
-      <Container className="flex max-w-lg flex-col items-center text-center">
-        {/* Succès : vert feuille doux, coche en vert foncé (accent) */}
-        <div className="flex h-20 w-20 items-center justify-center rounded-full bg-cycle-periscolaire-soft text-accent">
-          <CheckCircle2 className="h-10 w-10" aria-hidden="true" />
+    <section className="relative overflow-hidden bg-gradient-to-b from-cycle-periscolaire-soft to-white py-20 sm:py-32">
+      {/* Confettis de fête autour de la coche (décor immobile, à partir de 640 px, jamais sous le texte) */}
+      <div aria-hidden="true" className="pointer-events-none absolute inset-x-0 top-0 mx-auto hidden h-[420px] max-w-3xl sm:block">
+        <Confetti.Point className="left-[22%] top-[16%] bg-cycle-maternelle" />
+        <Confetti.Anneau className="right-[22%] top-[12%] border-cycle-primaire" />
+        <Confetti.Triangle className="left-[14%] top-[40%] bg-cycle-periscolaire" />
+        <Confetti.Etincelle className="right-[14%] top-[38%]" />
+        <Confetti.Point className="right-[30%] top-[26%] h-2.5 w-2.5 bg-vie-ecole" />
+        <Confetti.Point className="left-[30%] top-[28%] h-2.5 w-2.5 bg-secondary" />
+        <Confetti.Triangle className="right-[8%] top-[66%] -rotate-[20deg] bg-cycle-maternelle" />
+        <Confetti.Point className="left-[8%] top-[68%] h-3 w-3 bg-cycle-primaire" />
+      </div>
+      <Container className="relative flex max-w-lg flex-col items-center text-center">
+        {/* Succès : coche vert foncé (accent) sur blanc, halo feuille */}
+        <div className="flex h-24 w-24 items-center justify-center rounded-full bg-white text-accent shadow-[0_0_0_10px_hsl(var(--cycle-periscolaire)/0.18)]">
+          <CheckCircle2 className="h-12 w-12" aria-hidden="true" />
         </div>
 
         <h1 className="mt-8 font-heading text-3xl font-bold text-foreground sm:text-4xl">
