@@ -193,6 +193,19 @@
       hsl(var(--cycle-maternelle)) 0 25%, hsl(var(--cycle-primaire)) 25% 50%,
       hsl(var(--cycle-periscolaire)) 50% 75%, hsl(var(--vie-ecole)) 75%);
   }
+  /* Bandeaux marine : fournitures scolaires au trait blanc à 6 % (crayon, étoile, gomme, règle).
+     Assez léger pour garder le surtitre or au-dessus de 4,5:1 (maquettes de Reine, 10/11/2026). */
+  .motif-ecole {
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='260' height='260' viewBox='0 0 260 260'><g fill='none' stroke='white' stroke-opacity='0.06' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><g transform='translate(46 58) rotate(-40)'><rect x='-6' y='-28' width='12' height='48' rx='2'/><path d='M-6 20 L0 34 L6 20'/><path d='M-6 -20 H6'/></g><path d='M168 34 l5 11 12 1 -9 8 3 12 -11 -6 -11 6 3 -12 -9 -8 12 -1z'/><circle cx='206' cy='176' r='13'/><g transform='translate(88 188) rotate(22)'><rect x='-34' y='-8' width='68' height='16' rx='3'/><path d='M-22 -8 v6 M-11 -8 v9 M0 -8 v6 M11 -8 v9 M22 -8 v6'/></g><path d='M226 96 q8 -12 16 0 t16 0'/></g></svg>");
+    background-size: 260px 260px;
+  }
+  /* Bandeau Contact : papier quadrillé ciel */
+  .quadrillage-ciel {
+    background-image:
+      linear-gradient(hsl(var(--cycle-primaire) / 0.22) 1px, transparent 1px),
+      linear-gradient(90deg, hsl(var(--cycle-primaire) / 0.22) 1px, transparent 1px);
+    background-size: 24px 24px;
+  }
 }
 
 /* Réglage système « réduire les animations » : on coupe le zoom lent et les fondus CSS. */

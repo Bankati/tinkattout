@@ -6,6 +6,7 @@ import {
   Phone, Mail, Blocks, Pencil, Palette, Sparkle,
 } from "lucide-react";
 import { Container } from "@/components/site/Container";
+import { VagueOr } from "@/components/site/VagueOr";
 import { siteConfig, yearsOpen } from "@/config/site";
 import { FadeIn, StaggerContainer, StaggerItem } from "@/components/ui/motion";
 import { Counter } from "@/components/ui/counter";
@@ -97,13 +98,8 @@ export default function HomePage() {
           </div>
         </Container>
 
-        {/* Vague blanche à liseré or en bas */}
-        <div className="absolute bottom-0 left-0 w-full overflow-hidden leading-[0] z-10">
-          <svg viewBox="0 0 1200 60" preserveAspectRatio="none" aria-hidden="true" className="relative block w-[calc(100%+1px)] h-12 sm:h-16">
-            <path d="M0,30 C300,72 900,-6 1200,28 L1200,60 L0,60 Z" className="fill-secondary" />
-            <path d="M0,40 C300,80 900,0 1200,40 L1200,60 L0,60 Z" className="fill-background" />
-          </svg>
-        </div>
+        {/* Vague blanche à liseré or en bas (composant partagé avec les autres pages) */}
+        <VagueOr />
       </section>
 
       {/* ═══════════════════════════════════════════════
