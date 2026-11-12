@@ -12,7 +12,7 @@ export default async function AdminLoginPage() {
   return (
     <div className="flex min-h-screen items-center justify-center bg-muted/30 p-4">
       <div className="w-full max-w-sm rounded-2xl border border-border bg-card p-6 shadow-lg">
-        <h1 className="font-serif text-2xl font-bold text-center">Administration</h1>
+        <h1 className="font-heading text-2xl font-bold text-center">Administration</h1>
         <p className="mt-2 text-center text-sm text-muted-foreground">
           Connectez-vous pour accéder au back-office.
         </p>

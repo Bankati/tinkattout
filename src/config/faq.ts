@@ -2,7 +2,7 @@ export const FAQ_ITEMS = [
   {
     question: "Comment pré-inscrire mon enfant ?",
     answer:
-      "Remplissez le formulaire en ligne sur la page Pré-inscription. Vous recevez une confirmation immédiate par email. Notre équipe vous recontacte sous 48h ouvrées pour la suite du dossier et vous communique les pièces à fournir.",
+      "Remplissez le formulaire en ligne sur la page Pré-inscription. Une confirmation s'affiche à l'écran dès l'envoi de votre demande. Notre équipe vous recontacte sous 48h ouvrées pour la suite du dossier et vous communique les pièces à fournir.",
   },
   {
     question: "Quels sont les frais de scolarité ?",

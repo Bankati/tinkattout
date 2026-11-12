@@ -6,7 +6,13 @@ import { useRef } from "react";
 /**
  * Composant FadeIn
  * Fait apparaître les éléments avec un léger décalage vers le haut.
- * 
+ *
+ * À réserver aux blocs situés SOUS la ligne de flottaison : le HTML serveur
+ * part invisible jusqu'au chargement du JavaScript. Pour le haut de page,
+ * utiliser la classe CSS `animate-fade-up` (aucune dépendance au JS).
+ * L'attribut data-reveal permet de les réafficher quand le JS est désactivé
+ * (voir <noscript> dans app/layout.tsx).
+ *
  * @param children - Le contenu à animer
  * @param delay - Le délai avant le début de l'animation (pour les effets en cascade)
  * @param className - Classes CSS additionnelles
@@ -28,6 +34,7 @@ export function FadeIn({
   return (
     <motion.div
       ref={ref}
+      data-reveal=""
       initial={{ opacity: 0, y: 20 }} // État de départ (invisible, décalé vers le bas)
       animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }} // État final
       transition={{ duration: 0.6, delay: delay, ease: "easeOut" }} // Configuration de la transition
@@ -81,6 +88,7 @@ export function StaggerContainer({
 export function StaggerItem({ children, className = "" }: { children: React.ReactNode; className?: string }) {
   return (
     <motion.div
+      data-reveal=""
       variants={{
         hidden: { opacity: 0, y: 20 },
         show: { opacity: 1, y: 0, transition: { duration: 0.5 } }

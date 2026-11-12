@@ -4,7 +4,7 @@ import { siteConfig } from "@/config/site";
 export default function AdminSettingsPage() {
   return (
     <div className="space-y-6">
-      <h2 className="font-serif text-2xl font-bold">Paramètres</h2>
+      <h2 className="font-heading text-2xl font-bold">Paramètres</h2>
       <Card>
         <CardHeader>
           <CardTitle>Coordonnées du site</CardTitle>

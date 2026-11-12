@@ -13,7 +13,7 @@ export function AdminLoginForm() {
   return (
     <form action={submitAction} className="mt-6 space-y-4">
       {state?.error && (
-        <p className="rounded-lg bg-destructive/10 px-4 py-2 text-sm text-destructive">
+        <p role="alert" className="rounded-lg bg-destructive/10 px-4 py-2 text-sm text-destructive">
           {state.error}
         </p>
       )}
@@ -25,6 +25,9 @@ export function AdminLoginForm() {
           id="email"
           name="email"
           type="email"
+          inputMode="email"
+          autoComplete="username"
+          spellCheck={false}
           required
           className="flex h-11 w-full rounded-lg border border-input bg-background px-4 py-2 text-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
           placeholder="admin@tinka-tout.fr"
@@ -38,6 +41,7 @@ export function AdminLoginForm() {
           id="password"
           name="password"
           type="password"
+          autoComplete="current-password"
           required
           className="flex h-11 w-full rounded-lg border border-input bg-background px-4 py-2 text-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
         />

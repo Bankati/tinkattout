@@ -2,16 +2,16 @@
   <defs>
     <!-- Papier quadrillé subtil -->
     <pattern id="grid" width="24" height="24" patternUnits="userSpaceOnUse">
-      <path d="M 24 0 L 0 0 0 24" fill="none" stroke="#c6e8f7" stroke-width="0.6"/>
+      <path d="M 24 0 L 0 0 0 24" fill="none" stroke="#40B0E7" stroke-opacity="0.25" stroke-width="0.6"/>
     </pattern>
   </defs>
 
   <!-- Fond blanc cassé + grille -->
-  <rect width="800" height="800" fill="#f4faff"/>
+  <rect width="800" height="800" fill="#E7F6FD"/>
   <rect width="800" height="800" fill="url(#grid)"/>
 
   <!-- Tous les éléments en bleu contour, stroke only -->
-  <g fill="none" stroke="#3FAEE8" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+  <g fill="none" stroke="#40B0E7" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
 
     <!-- ══ CRAYONS ══ -->
     <!-- Crayon 1 — haut gauche, penché -->
@@ -155,7 +155,7 @@
       <circle cx="18"  cy="-15" r="8" stroke-width="2"/>
       <line x1="0" y1="8" x2="0" y2="-14" stroke-width="2.2"/>
       <line x1="0" y1="8" x2="14" y2="16" stroke-width="2.2"/>
-      <circle cx="0" cy="8" r="3" fill="#3FAEE8" stroke="none"/>
+      <circle cx="0" cy="8" r="3" fill="#40B0E7" stroke="none"/>
       <line x1="-9" y1="35" x2="-14" y2="42" stroke-width="2.2"/>
       <line x1="9"  y1="35" x2="14"  y2="42" stroke-width="2.2"/>
     </g>
@@ -167,7 +167,7 @@
       <circle cx="18"  cy="-15" r="8" stroke-width="2"/>
       <line x1="0" y1="8" x2="0" y2="-14" stroke-width="2.2"/>
       <line x1="0" y1="8" x2="14" y2="16" stroke-width="2.2"/>
-      <circle cx="0" cy="8" r="3" fill="#3FAEE8" stroke="none"/>
+      <circle cx="0" cy="8" r="3" fill="#40B0E7" stroke="none"/>
       <line x1="-9" y1="35" x2="-14" y2="42" stroke-width="2.2"/>
       <line x1="9"  y1="35" x2="14"  y2="42" stroke-width="2.2"/>
     </g>
@@ -282,7 +282,7 @@
   </g>
 
   <!-- ══ GROS POINTS BLEUS PLEINS ══ -->
-  <g fill="#3FAEE8" stroke="none">
+  <g fill="#40B0E7" stroke="none">
     <circle cx="175" cy="35"  r="5.5"/>
     <circle cx="540" cy="58"  r="7"/>
     <circle cx="415" cy="22"  r="4.5"/>

@@ -1,15 +1,28 @@
 import Link from "next/link";
-import { prisma } from "@/lib/db";
+import { connection } from "next/server";
+import { REGISTRATION_STATUSES, type RegistrationStatus } from "@/config/school";
+import { requireAdmin } from "@/lib/auth";
+import { logServerError, prisma } from "@/lib/db";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 
+function statusLabel(status: string): string {
+  return Object.hasOwn(REGISTRATION_STATUSES, status)
+    ? REGISTRATION_STATUSES[status as RegistrationStatus]
+    : status;
+}
+
 export default async function AdminDashboardPage() {
+  await requireAdmin();
+  await connection();
+
   const now = new Date();
   const sevenDaysAgo = new Date(now.getTime() - 7 * 24 * 60 * 60 * 1000);
 
   let totalReg = 0, newReg = 0, pendingReg = 0, totalContacts = 0;
   let lastRegs: Awaited<ReturnType<typeof prisma.registration.findMany>> = [];
   let lastContacts: Awaited<ReturnType<typeof prisma.contact.findMany>> = [];
+  let dbUnavailable = false;
 
   try {
     [totalReg, newReg, pendingReg, lastRegs, lastContacts, totalContacts] = await Promise.all([
@@ -20,12 +33,18 @@ export default async function AdminDashboardPage() {
       prisma.contact.findMany({ orderBy: { createdAt: "desc" }, take: 5 }),
       prisma.contact.count(),
     ]);
-  } catch {
-    // Base de données non connectée (Supabase non configuré)
+  } catch (error) {
+    dbUnavailable = true;
+    logServerError("admin/dashboard", error);
   }
 
   return (
     <div className="space-y-8">
+      {dbUnavailable && (
+        <div role="alert" className="rounded-lg border border-destructive/30 bg-destructive/5 px-4 py-3 text-sm text-destructive">
+          Base de données indisponible : les chiffres ci-dessous sont incomplets. Réessayez dans quelques instants.
+        </div>
+      )}
       <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
         <Card>
           <CardHeader className="pb-2">
@@ -80,7 +99,7 @@ export default async function AdminDashboardPage() {
                       <p className="font-medium">{r.studentName}</p>
                       <p className="text-xs text-muted-foreground">{r.gradeLevel} · {r.parentName}</p>
                     </div>
-                    <Badge variant={r.status === "PENDING" ? "outline" : "secondary"}>{r.status}</Badge>
+                    <Badge variant={r.status === "PENDING" ? "outline" : "secondary"}>{statusLabel(r.status)}</Badge>
                   </div>
                 ))
               )}
