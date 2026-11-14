@@ -4,11 +4,14 @@ import { PageHero } from "@/components/site/PageHero";
 import { CheminEtapes, Confetti } from "@/components/site/hero-dessins";
 import { siteConfig } from "@/config/site";
 import { InscriptionForm } from "./InscriptionForm";
+import { pageMetadata } from "@/lib/seo";
 
-export const metadata = {
-  title: "Pré-inscription — École Tinka-Tout",
-  description: "Pré-inscription en ligne en 3 minutes. L'École Tinka-Tout vous recontacte sous 48h.",
-};
+export const metadata = pageMetadata({
+  title: "Pré-inscription en ligne",
+  description:
+    "Pré-inscrivez votre enfant en ligne en 3 minutes, de la maternelle au CM2. L'École Tinka-Tout à Lomé vous recontacte sous 48 h.",
+  path: "/inscription",
+});
 
 /* Les 3 étapes, affichées dans le bandeau (vrai contenu, lu par les lecteurs d'écran). */
 const ETAPES = [

@@ -10,11 +10,14 @@ import { ClassesAccordion } from "./ClassesAccordion";
 import {
   boutonOr, boutonMarine, boutonContourBlanc, tailleBouton, surtitreOr, CYCLE_COULEURS,
 } from "@/components/ui/palette";
+import { pageMetadata } from "@/lib/seo";
 
-export const metadata = {
-  title: "Classes & Programme — École Tinka-Tout",
-  description: "De la Petite Section au CM2 : nos cycles, objectifs, matières et compétences par niveau.",
-};
+export const metadata = pageMetadata({
+  title: "Classes et programme, de la maternelle au CM2",
+  description:
+    "Petite Section, Moyenne Section, Grande Section, CP, CE1, CE2, CM1 et CM2 à Lomé : cycles, objectifs, matières et compétences par niveau à l'École Tinka-Tout.",
+  path: "/classes",
+});
 
 const CLASSES = [
   {

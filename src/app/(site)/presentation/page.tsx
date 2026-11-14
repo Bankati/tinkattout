@@ -11,11 +11,14 @@ import { FAQ_ITEMS } from "@/config/faq";
 import {
   boutonOr, boutonMarine, boutonContourBlanc, tailleBouton, surtitreOr,
 } from "@/components/ui/palette";
+import { pageMetadata } from "@/lib/seo";
 
-export const metadata = {
-  title: "Présentation — École Tinka-Tout",
-  description: "Notre mission, nos valeurs, notre méthode pédagogique et nos réponses à vos questions.",
-};
+export const metadata = pageMetadata({
+  title: "Présentation : mission, valeurs et pédagogie",
+  description:
+    "Découvrez l'École Tinka-Tout à Lomé : notre mission, nos valeurs, notre méthode pédagogique et les réponses aux questions des parents.",
+  path: "/presentation",
+});
 
 /* Une couleur douce par valeur (même logique que l'accueil : Respect = corail, travail et exigence = or). */
 const VALEURS = [

@@ -5,11 +5,14 @@ import { ShieldCheck } from "lucide-react";
 import { Container } from "@/components/site/Container";
 import { BandeauSobre } from "@/components/site/PageHero";
 import { siteConfig } from "@/config/site";
+import { pageMetadata } from "@/lib/seo";
 
-export const metadata = {
-  title: "Politique de confidentialité — École Tinka-Tout",
-  description: "Traitement des données personnelles et cookies.",
-};
+export const metadata = pageMetadata({
+  title: "Politique de confidentialité",
+  description:
+    "Comment l'École Tinka-Tout traite les données personnelles des familles et utilise les cookies.",
+  path: "/privacy",
+});
 
 export default function PrivacyPage() {
   return (
