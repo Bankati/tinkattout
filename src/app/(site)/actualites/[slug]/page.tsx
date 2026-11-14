@@ -10,6 +10,7 @@ import { VagueOr } from "@/components/site/VagueOr";
 import { Confetti } from "@/components/site/hero-dessins";
 import { logServerError, prisma } from "@/lib/db";
 import { boutonOr, tailleBouton } from "@/components/ui/palette";
+import { pageMetadata } from "@/lib/seo";
 
 const MAX_SLUG_LENGTH = 200;
 
@@ -29,11 +30,12 @@ const getPublishedNews = cache(async (slug: string): Promise<NewsLookup> => {
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params;
   const result = await getPublishedNews(slug);
-  if (!result.ok || !result.news) return { title: "Actualité — École Tinka-Tout" };
-  return {
-    title: `${result.news.title} — École Tinka-Tout`,
+  if (!result.ok || !result.news) return { title: "Actualité", robots: { index: false, follow: true } };
+  return pageMetadata({
+    title: result.news.title,
     description: result.news.content.slice(0, 160),
-  };
+    path: `/actualites/${result.news.slug}`,
+  });
 }
 
 export default async function ActualiteDetailPage({ params }: { params: Promise<{ slug: string }> }) {

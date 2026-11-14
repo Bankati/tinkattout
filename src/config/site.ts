@@ -9,6 +9,8 @@ const socialLinks: SocialLink[] = [];
 
 export const siteConfig = {
   name: "École Tinka-Tout",
+  /** Adresse officielle du site (liens absolus, sitemap, partages). */
+  url: "https://tinka-tout.com",
   tagline: "Excellence & Épanouissement pour vos enfants",
   description:
     "Une pédagogie bienveillante, un cadre sécurisé et un accompagnement personnalisé de la Maternelle au CM2 à Lomé.",

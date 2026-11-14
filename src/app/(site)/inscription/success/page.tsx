@@ -4,11 +4,15 @@ import { Container } from "@/components/site/Container";
 import { Confetti } from "@/components/site/hero-dessins";
 import { siteConfig, phoneHref } from "@/config/site";
 import { boutonMarine, boutonContour, tailleBouton } from "@/components/ui/palette";
+import { pageMetadata } from "@/lib/seo";
 
-export const metadata = {
-  title: "Demande reçue — École Tinka-Tout",
-  description: "Votre pré-inscription a bien été enregistrée.",
-};
+export const metadata = pageMetadata({
+  title: "Demande reçue",
+  description:
+    "Votre pré-inscription a bien été enregistrée.",
+  path: "/inscription/success",
+  noindex: true,
+});
 
 export default function InscriptionSuccessPage() {
   return (

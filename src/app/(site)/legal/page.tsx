@@ -5,11 +5,14 @@ import { FileText } from "lucide-react";
 import { Container } from "@/components/site/Container";
 import { BandeauSobre } from "@/components/site/PageHero";
 import { siteConfig } from "@/config/site";
+import { pageMetadata } from "@/lib/seo";
 
-export const metadata = {
-  title: "Mentions légales — École Tinka-Tout",
-  description: "Mentions légales du site.",
-};
+export const metadata = pageMetadata({
+  title: "Mentions légales",
+  description:
+    "Mentions légales du site de l'École Tinka-Tout à Lomé.",
+  path: "/legal",
+});
 
 export default function LegalPage() {
   return (

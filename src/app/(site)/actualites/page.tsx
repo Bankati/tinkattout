@@ -10,15 +10,18 @@ import { FadeIn, StaggerContainer, StaggerItem } from "@/components/ui/motion";
 import { logServerError, prisma } from "@/lib/db";
 import { GalerieGrid } from "./GalerieGrid";
 import { boutonOr, boutonContourBlanc, tailleBouton } from "@/components/ui/palette";
+import { pageMetadata } from "@/lib/seo";
 
 /* Vie de l'école = prune (vie-ecole) : surtitres en badge prune doux (6,53:1). */
 const surtitrePrune =
   "flex w-fit items-center gap-1.5 rounded-full bg-vie-ecole-soft px-3 py-1 text-xs font-bold uppercase tracking-widest text-vie-ecole-strong";
 
-export const metadata = {
-  title: "Vie de l'École — École Tinka-Tout",
-  description: "Actualités, annonces, événements et galerie photos de l'École Tinka-Tout à Lomé.",
-};
+export const metadata = pageMetadata({
+  title: "Vie de l'école : actualités et galerie",
+  description:
+    "Actualités, annonces, événements et galerie photos de l'École Tinka-Tout, école maternelle et primaire à Lomé.",
+  path: "/actualites",
+});
 
 export default async function VieEcolePage() {
   await connection();

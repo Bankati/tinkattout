@@ -6,6 +6,7 @@ import {
   Phone, Mail, Blocks, Pencil, Palette, Sparkle,
 } from "lucide-react";
 import { Container } from "@/components/site/Container";
+import { SchoolJsonLd } from "@/components/site/SchoolJsonLd";
 import { VagueOr } from "@/components/site/VagueOr";
 import { siteConfig, yearsOpen } from "@/config/site";
 import { FadeIn, StaggerContainer, StaggerItem } from "@/components/ui/motion";
@@ -17,6 +18,7 @@ import {
 export default function HomePage() {
   return (
     <>
+      <SchoolJsonLd />
       {/* ═══════════════════════════════════════════════
           HÉRO
       ═══════════════════════════════════════════════ */}

@@ -7,11 +7,14 @@ import { siteConfig, phoneHref, emailHref, directionsHref, mapEmbedSrc, mapLarge
 import { ContactForm } from "./ContactForm";
 import { FadeIn } from "@/components/ui/motion";
 import { boutonOr, boutonMarine, tailleBouton, surtitreOr } from "@/components/ui/palette";
+import { pageMetadata } from "@/lib/seo";
 
-export const metadata = {
-  title: "Contact — École Tinka-Tout",
-  description: "Coordonnées, horaires et formulaire de contact de l'École Tinka-Tout à Lomé.",
-};
+export const metadata = pageMetadata({
+  title: "Contact, horaires et plan d'accès",
+  description:
+    "Téléphone, horaires, adresse et plan d'accès de l'École Tinka-Tout, route de Kpotavé à Lomé. Écrivez-nous ou venez visiter l'école.",
+  path: "/contact",
+});
 
 export default function ContactPage() {
   return (
