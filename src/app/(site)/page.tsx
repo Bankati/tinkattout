@@ -113,7 +113,7 @@ export default function HomePage() {
               { value: 500,  suffix: "+", label: "Élèves accueillis",     icon: Users,    pastille: "bg-cycle-maternelle-soft text-cycle-maternelle-strong -rotate-3" },
               { value: yearsOpen, suffix: "", label: "Années d'existence", icon: Trophy,   pastille: "bg-secondary-soft text-secondary-strong rotate-3" },
               { value: 100,  suffix: "%", label: "Réussite au CEP",       icon: Star,     pastille: "bg-cycle-periscolaire-soft text-cycle-periscolaire-strong -rotate-3" },
-              { value: 30,   suffix: "+", label: "Enseignants qualifiés", icon: BookOpen, pastille: "bg-cycle-primaire-soft text-cycle-primaire-strong rotate-3" },
+              { value: 20,   suffix: "",  label: "Enseignants qualifiés", icon: BookOpen, pastille: "bg-cycle-primaire-soft text-cycle-primaire-strong rotate-3" },
             ].map(({ value, suffix, label, icon: Icon, pastille }, i) => (
               <div key={i} className="flex flex-col items-center gap-2 px-4 text-center">
                 <div className={`flex h-12 w-12 items-center justify-center rounded-2xl ${pastille}`}>
