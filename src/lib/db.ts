@@ -7,6 +7,9 @@ export const prisma = globalForPrisma.prisma ?? new PrismaClient();
 
 if (process.env.NODE_ENV !== "production") globalForPrisma.prisma = prisma;
 
+/** Faux tant qu'aucune base n'est branchée (site déployé sans base, en attendant Supabase). */
+export const isDatabaseConfigured = Boolean(process.env.DATABASE_URL);
+
 /**
  * Résumé d'erreur sans donnée personnelle : type et code Prisma seulement.
  * Jamais le message complet ni l'objet d'erreur (ils peuvent contenir les valeurs saisies).
