@@ -4,7 +4,8 @@ import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
 import { z } from "zod";
 import { GRADE_LEVEL_VALUES, type RegistrationStatus } from "@/config/school";
-import { logServerError, prisma } from "@/lib/db";
+import { siteConfig } from "@/config/site";
+import { isDatabaseConfigured, logServerError, prisma } from "@/lib/db";
 
 /** Contrat avec les formulaires : en cas d'erreur, message + champs saisis (jamais le champ piège). */
 export type FormErrorState = { error: string; values: Record<string, string> };
@@ -84,6 +85,10 @@ function isBot(formData: FormData): boolean {
   return typeof value !== "string" || value.trim() !== "";
 }
 
+/** Sans base, rien ne peut être enregistré : on le dit et on donne le téléphone. */
+const NO_DATABASE_MESSAGE =
+  `Le formulaire en ligne n'est pas encore ouvert. Appelez-nous ou écrivez-nous sur WhatsApp au ${siteConfig.contact.phone}.`;
+
 function firstIssue(error: z.ZodError): string {
   return error.issues[0]?.message ?? "Certains champs sont invalides.";
 }
@@ -95,6 +100,8 @@ export async function createInscription(formData: FormData): Promise<FormErrorSt
   const raw = readFields(formData, INSCRIPTION_FIELDS);
   const parsed = inscriptionSchema.safeParse(raw);
   if (!parsed.success) return { error: firstIssue(parsed.error), values: echoValues(raw) };
+
+  if (!isDatabaseConfigured) return { error: NO_DATABASE_MESSAGE, values: echoValues(raw) };
 
   const status: RegistrationStatus = "PENDING";
   try {
@@ -118,6 +125,8 @@ export async function createContact(formData: FormData): Promise<FormErrorState 
   const raw = readFields(formData, CONTACT_FIELDS);
   const parsed = contactSchema.safeParse(raw);
   if (!parsed.success) return { error: firstIssue(parsed.error), values: echoValues(raw) };
+
+  if (!isDatabaseConfigured) return { error: NO_DATABASE_MESSAGE, values: echoValues(raw) };
 
   try {
     await prisma.contact.create({ data: parsed.data });

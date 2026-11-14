@@ -3,6 +3,7 @@
 // - VERCEL_ENV=production : lance `prisma migrate deploy` (applique les migrations
 //   en attente du dossier prisma/migrations, ne crée et ne supprime rien d'autre).
 //   Si la migration échoue, le build échoue et l'ancienne version reste en ligne.
+// - Production sans aucune base configurée : ne fait rien (site sans base).
 // - Tout autre cas (preview, development, build local) : ne fait rien.
 //
 // `migrate deploy` passe par DIRECT_URL (pooler Supabase en mode session, port 5432),
@@ -18,8 +19,23 @@ if (vercelEnv !== "production") {
   process.exit(0);
 }
 
-if (!process.env.DATABASE_URL || !process.env.DIRECT_URL) {
-  console.error("[vercel-migrate] DATABASE_URL et DIRECT_URL sont obligatoires en production.");
+const hasDatabaseUrl = Boolean(process.env.DATABASE_URL);
+const hasDirectUrl = Boolean(process.env.DIRECT_URL);
+
+// Aucune base configurée : le site public se construit quand même (actualités,
+// formulaires et admin affichent « indisponible »). Les migrations seront
+// appliquées au premier build qui aura les deux variables.
+if (!hasDatabaseUrl && !hasDirectUrl) {
+  console.warn(
+    "[vercel-migrate] Aucune base configurée (DATABASE_URL et DIRECT_URL absentes) : migrations non appliquées. " +
+      "Actualités, formulaires et admin resteront indisponibles jusqu'à leur ajout dans Vercel.",
+  );
+  process.exit(0);
+}
+
+// Une seule des deux : configuration incomplète, on bloque pour ne pas déployer à moitié.
+if (!hasDatabaseUrl || !hasDirectUrl) {
+  console.error("[vercel-migrate] DATABASE_URL et DIRECT_URL doivent être définies ensemble en production.");
   process.exit(1);
 }
 
